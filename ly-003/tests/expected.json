@@ -1,0 +1,1136 @@
+{
+  "schema_version": 1,
+  "batch_id": "QS-7A2C-91D0-4B6E",
+  "experiments": [
+    {
+      "experiment_id": "EX-4D71-A90C",
+      "sensor_to_track": {
+        "CH-2F3-E9EA": "TRK-57F595ED9C",
+        "CH-6DD-4BF2": "TRK-57F595ED9C",
+        "CH-GQ8-AAE9": "TRK-059B7509DC",
+        "CH-J09-6A7D": "TRK-059B7509DC",
+        "CH-9ZC-9DC5": "TRK-E4DC106401",
+        "CH-DZC-C1E3": "TRK-E4DC106401",
+        "CH-HBU-19DB": "TRK-CFC8C42DBA",
+        "CH-RBL-9BEB": "TRK-CFC8C42DBA",
+        "CH-897-8F60": "TRK-0D376E1D5A",
+        "CH-YMK-4DAE": "TRK-0D376E1D5A",
+        "CH-KAC-EB7D": "TRK-9B98728353",
+        "CH-W81-B5E5": "TRK-9B98728353",
+        "CH-6RB-DCFD": "TRK-6B718A5DC1",
+        "CH-NAT-B7A1": "TRK-6B718A5DC1",
+        "CH-EBK-7062": "TRK-39D346BB4F",
+        "CH-M1X-1CE3": "TRK-39D346BB4F",
+        "CH-K13-BD45": "TRK-56CD2EDD0A",
+        "CH-XVD-19CC": "TRK-56CD2EDD0A",
+        "CH-663-BB46": "TRK-729E183806",
+        "CH-QJQ-C77A": "TRK-729E183806",
+        "CH-MFE-EC79": "TRK-64AAB1E5FA",
+        "CH-VLX-80CA": "TRK-64AAB1E5FA",
+        "CH-EJK-DB0F": "TRK-3553EFCCD9",
+        "CH-TRV-404F": "TRK-3553EFCCD9"
+      },
+      "tracks": [
+        {
+          "track_id": "TRK-059B7509DC",
+          "sensor_ids": [
+            "CH-GQ8-AAE9",
+            "CH-J09-6A7D"
+          ],
+          "mass_mg": 2050.0
+        },
+        {
+          "track_id": "TRK-0D376E1D5A",
+          "sensor_ids": [
+            "CH-897-8F60",
+            "CH-YMK-4DAE"
+          ],
+          "mass_mg": 640.0
+        },
+        {
+          "track_id": "TRK-3553EFCCD9",
+          "sensor_ids": [
+            "CH-EJK-DB0F",
+            "CH-TRV-404F"
+          ],
+          "mass_mg": 1750.0
+        },
+        {
+          "track_id": "TRK-39D346BB4F",
+          "sensor_ids": [
+            "CH-EBK-7062",
+            "CH-M1X-1CE3"
+          ],
+          "mass_mg": 640.0
+        },
+        {
+          "track_id": "TRK-56CD2EDD0A",
+          "sensor_ids": [
+            "CH-K13-BD45",
+            "CH-XVD-19CC"
+          ],
+          "mass_mg": 910.0
+        },
+        {
+          "track_id": "TRK-57F595ED9C",
+          "sensor_ids": [
+            "CH-2F3-E9EA",
+            "CH-6DD-4BF2"
+          ],
+          "mass_mg": 910.0
+        },
+        {
+          "track_id": "TRK-64AAB1E5FA",
+          "sensor_ids": [
+            "CH-MFE-EC79",
+            "CH-VLX-80CA"
+          ],
+          "mass_mg": 1460.0
+        },
+        {
+          "track_id": "TRK-6B718A5DC1",
+          "sensor_ids": [
+            "CH-6RB-DCFD",
+            "CH-NAT-B7A1"
+          ],
+          "mass_mg": 2050.0
+        },
+        {
+          "track_id": "TRK-729E183806",
+          "sensor_ids": [
+            "CH-663-BB46",
+            "CH-QJQ-C77A"
+          ],
+          "mass_mg": 2050.0
+        },
+        {
+          "track_id": "TRK-9B98728353",
+          "sensor_ids": [
+            "CH-KAC-EB7D",
+            "CH-W81-B5E5"
+          ],
+          "mass_mg": 1460.0
+        },
+        {
+          "track_id": "TRK-CFC8C42DBA",
+          "sensor_ids": [
+            "CH-HBU-19DB",
+            "CH-RBL-9BEB"
+          ],
+          "mass_mg": 2050.0
+        },
+        {
+          "track_id": "TRK-E4DC106401",
+          "sensor_ids": [
+            "CH-9ZC-9DC5",
+            "CH-DZC-C1E3"
+          ],
+          "mass_mg": 640.0
+        }
+      ],
+      "events": [
+        {
+          "event_id": "EV-9269754885",
+          "kind": "particle",
+          "contact_time_s": 1.19575,
+          "contact_mm": [
+            -82.72,
+            12.692
+          ],
+          "normal": [
+            0.661889,
+            -0.749602
+          ],
+          "restitution": 0.6756,
+          "incoming_sensor_ids": [
+            "CH-6DD-4BF2",
+            "CH-GQ8-AAE9"
+          ],
+          "outgoing_sensor_ids": [
+            "CH-2F3-E9EA",
+            "CH-J09-6A7D"
+          ],
+          "pairs": [
+            [
+              "CH-6DD-4BF2",
+              "CH-2F3-E9EA"
+            ],
+            [
+              "CH-GQ8-AAE9",
+              "CH-J09-6A7D"
+            ]
+          ]
+        },
+        {
+          "event_id": "EV-DC323C303E",
+          "kind": "particle",
+          "contact_time_s": 1.954153,
+          "contact_mm": [
+            235.288,
+            0.15
+          ],
+          "normal": [
+            0.300607,
+            -0.953748
+          ],
+          "restitution": 0.859,
+          "incoming_sensor_ids": [
+            "CH-DZC-C1E3",
+            "CH-RBL-9BEB"
+          ],
+          "outgoing_sensor_ids": [
+            "CH-9ZC-9DC5",
+            "CH-HBU-19DB"
+          ],
+          "pairs": [
+            [
+              "CH-DZC-C1E3",
+              "CH-9ZC-9DC5"
+            ],
+            [
+              "CH-RBL-9BEB",
+              "CH-HBU-19DB"
+            ]
+          ]
+        },
+        {
+          "event_id": "EV-4339C08025",
+          "kind": "particle",
+          "contact_time_s": 2.317926,
+          "contact_mm": [
+            116.446,
+            113.35
+          ],
+          "normal": [
+            0.609897,
+            -0.792481
+          ],
+          "restitution": 0.9102,
+          "incoming_sensor_ids": [
+            "CH-897-8F60",
+            "CH-W81-B5E5"
+          ],
+          "outgoing_sensor_ids": [
+            "CH-KAC-EB7D",
+            "CH-YMK-4DAE"
+          ],
+          "pairs": [
+            [
+              "CH-897-8F60",
+              "CH-YMK-4DAE"
+            ],
+            [
+              "CH-W81-B5E5",
+              "CH-KAC-EB7D"
+            ]
+          ]
+        },
+        {
+          "event_id": "EV-9A91B88EAF",
+          "kind": "particle",
+          "contact_time_s": 3.061494,
+          "contact_mm": [
+            -139.084,
+            103.688
+          ],
+          "normal": [
+            0.597258,
+            -0.802049
+          ],
+          "restitution": 0.8384,
+          "incoming_sensor_ids": [
+            "CH-6RB-DCFD",
+            "CH-M1X-1CE3"
+          ],
+          "outgoing_sensor_ids": [
+            "CH-EBK-7062",
+            "CH-NAT-B7A1"
+          ],
+          "pairs": [
+            [
+              "CH-6RB-DCFD",
+              "CH-NAT-B7A1"
+            ],
+            [
+              "CH-M1X-1CE3",
+              "CH-EBK-7062"
+            ]
+          ]
+        },
+        {
+          "event_id": "EV-56CD2EDD0A",
+          "kind": "wall",
+          "contact_time_s": 3.514414,
+          "contact_mm": [
+            376.266,
+            98.445
+          ],
+          "normal": [
+            0.939693,
+            0.34202
+          ],
+          "restitution": 0.868,
+          "incoming_sensor_ids": [
+            "CH-K13-BD45"
+          ],
+          "outgoing_sensor_ids": [
+            "CH-XVD-19CC"
+          ],
+          "pairs": [
+            [
+              "CH-K13-BD45",
+              "CH-XVD-19CC"
+            ]
+          ]
+        },
+        {
+          "event_id": "EV-729E183806",
+          "kind": "wall",
+          "contact_time_s": 3.855847,
+          "contact_mm": [
+            12.191,
+            -307.716
+          ],
+          "normal": [
+            0.34202,
+            -0.939693
+          ],
+          "restitution": 0.8088,
+          "incoming_sensor_ids": [
+            "CH-663-BB46"
+          ],
+          "outgoing_sensor_ids": [
+            "CH-QJQ-C77A"
+          ],
+          "pairs": [
+            [
+              "CH-663-BB46",
+              "CH-QJQ-C77A"
+            ]
+          ]
+        },
+        {
+          "event_id": "EV-64AAB1E5FA",
+          "kind": "wall",
+          "contact_time_s": 4.600342,
+          "contact_mm": [
+            -54.994,
+            221.203
+          ],
+          "normal": [
+            -0.34202,
+            0.939693
+          ],
+          "restitution": 0.7671,
+          "incoming_sensor_ids": [
+            "CH-MFE-EC79"
+          ],
+          "outgoing_sensor_ids": [
+            "CH-VLX-80CA"
+          ],
+          "pairs": [
+            [
+              "CH-MFE-EC79",
+              "CH-VLX-80CA"
+            ]
+          ]
+        },
+        {
+          "event_id": "EV-3553EFCCD9",
+          "kind": "wall",
+          "contact_time_s": 5.00486,
+          "contact_mm": [
+            -268.321,
+            -235.708
+          ],
+          "normal": [
+            -0.939693,
+            -0.34202
+          ],
+          "restitution": 0.9155,
+          "incoming_sensor_ids": [
+            "CH-TRV-404F"
+          ],
+          "outgoing_sensor_ids": [
+            "CH-EJK-DB0F"
+          ],
+          "pairs": [
+            [
+              "CH-TRV-404F",
+              "CH-EJK-DB0F"
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "experiment_id": "EX-81B5-3E6A",
+      "sensor_to_track": {
+        "CH-GDY-8E50": "TRK-F73F7CD87D",
+        "CH-YC5-994D": "TRK-F73F7CD87D",
+        "CH-DXZ-F4E5": "TRK-2211E38A50",
+        "CH-MP0-0837": "TRK-2211E38A50",
+        "CH-LHA-766C": "TRK-B0F05C1449",
+        "CH-YLT-7463": "TRK-B0F05C1449",
+        "CH-A8D-1AF8": "TRK-303B5131E6",
+        "CH-V8D-706A": "TRK-303B5131E6",
+        "CH-ALE-A5AF": "TRK-05D2DDD243",
+        "CH-UBN-BE0D": "TRK-05D2DDD243",
+        "CH-M5K-E7F5": "TRK-0F899C2389",
+        "CH-QHD-15FA": "TRK-0F899C2389",
+        "CH-LLD-2CB9": "TRK-41C8F439D2",
+        "CH-PD1-13CE": "TRK-41C8F439D2",
+        "CH-1NR-6CFE": "TRK-C3AFA40BA7",
+        "CH-UAD-DAFF": "TRK-C3AFA40BA7",
+        "CH-0SN-FFD7": "TRK-BA9CE9EE08",
+        "CH-XL8-1E15": "TRK-BA9CE9EE08",
+        "CH-FW6-BA5D": "TRK-FA89BB08C7",
+        "CH-QXF-711F": "TRK-FA89BB08C7",
+        "CH-RHK-9D5A": "TRK-974DA740B1",
+        "CH-W89-7B56": "TRK-974DA740B1"
+      },
+      "tracks": [
+        {
+          "track_id": "TRK-05D2DDD243",
+          "sensor_ids": [
+            "CH-ALE-A5AF",
+            "CH-UBN-BE0D"
+          ],
+          "mass_mg": 2050.0
+        },
+        {
+          "track_id": "TRK-0F899C2389",
+          "sensor_ids": [
+            "CH-M5K-E7F5",
+            "CH-QHD-15FA"
+          ],
+          "mass_mg": 1460.0
+        },
+        {
+          "track_id": "TRK-2211E38A50",
+          "sensor_ids": [
+            "CH-DXZ-F4E5",
+            "CH-MP0-0837"
+          ],
+          "mass_mg": 1460.0
+        },
+        {
+          "track_id": "TRK-303B5131E6",
+          "sensor_ids": [
+            "CH-A8D-1AF8",
+            "CH-V8D-706A"
+          ],
+          "mass_mg": 2050.0
+        },
+        {
+          "track_id": "TRK-41C8F439D2",
+          "sensor_ids": [
+            "CH-LLD-2CB9",
+            "CH-PD1-13CE"
+          ],
+          "mass_mg": 1180.0
+        },
+        {
+          "track_id": "TRK-974DA740B1",
+          "sensor_ids": [
+            "CH-RHK-9D5A",
+            "CH-W89-7B56"
+          ],
+          "mass_mg": 910.0
+        },
+        {
+          "track_id": "TRK-B0F05C1449",
+          "sensor_ids": [
+            "CH-LHA-766C",
+            "CH-YLT-7463"
+          ],
+          "mass_mg": 1180.0
+        },
+        {
+          "track_id": "TRK-BA9CE9EE08",
+          "sensor_ids": [
+            "CH-0SN-FFD7",
+            "CH-XL8-1E15"
+          ],
+          "mass_mg": 1180.0
+        },
+        {
+          "track_id": "TRK-C3AFA40BA7",
+          "sensor_ids": [
+            "CH-1NR-6CFE",
+            "CH-UAD-DAFF"
+          ],
+          "mass_mg": 910.0
+        },
+        {
+          "track_id": "TRK-F73F7CD87D",
+          "sensor_ids": [
+            "CH-GDY-8E50",
+            "CH-YC5-994D"
+          ],
+          "mass_mg": 2050.0
+        },
+        {
+          "track_id": "TRK-FA89BB08C7",
+          "sensor_ids": [
+            "CH-FW6-BA5D",
+            "CH-QXF-711F"
+          ],
+          "mass_mg": 910.0
+        }
+      ],
+      "events": [
+        {
+          "event_id": "EV-C5FA925F65",
+          "kind": "particle",
+          "contact_time_s": 0.786097,
+          "contact_mm": [
+            -115.163,
+            83.802
+          ],
+          "normal": [
+            0.999505,
+            -0.031453
+          ],
+          "restitution": 0.7062,
+          "incoming_sensor_ids": [
+            "CH-GDY-8E50",
+            "CH-MP0-0837"
+          ],
+          "outgoing_sensor_ids": [
+            "CH-DXZ-F4E5",
+            "CH-YC5-994D"
+          ],
+          "pairs": [
+            [
+              "CH-GDY-8E50",
+              "CH-YC5-994D"
+            ],
+            [
+              "CH-MP0-0837",
+              "CH-DXZ-F4E5"
+            ]
+          ]
+        },
+        {
+          "event_id": "EV-778F55D317",
+          "kind": "particle",
+          "contact_time_s": 1.607389,
+          "contact_mm": [
+            -61.222,
+            17.789
+          ],
+          "normal": [
+            0.56739,
+            -0.823449
+          ],
+          "restitution": 0.6265,
+          "incoming_sensor_ids": [
+            "CH-LHA-766C",
+            "CH-V8D-706A"
+          ],
+          "outgoing_sensor_ids": [
+            "CH-A8D-1AF8",
+            "CH-YLT-7463"
+          ],
+          "pairs": [
+            [
+              "CH-LHA-766C",
+              "CH-YLT-7463"
+            ],
+            [
+              "CH-V8D-706A",
+              "CH-A8D-1AF8"
+            ]
+          ]
+        },
+        {
+          "event_id": "EV-42E27FADD4",
+          "kind": "particle",
+          "contact_time_s": 2.325037,
+          "contact_mm": [
+            256.899,
+            101.035
+          ],
+          "normal": [
+            0.993079,
+            0.117445
+          ],
+          "restitution": 0.7044,
+          "incoming_sensor_ids": [
+            "CH-ALE-A5AF",
+            "CH-QHD-15FA"
+          ],
+          "outgoing_sensor_ids": [
+            "CH-M5K-E7F5",
+            "CH-UBN-BE0D"
+          ],
+          "pairs": [
+            [
+              "CH-ALE-A5AF",
+              "CH-UBN-BE0D"
+            ],
+            [
+              "CH-QHD-15FA",
+              "CH-M5K-E7F5"
+            ]
+          ]
+        },
+        {
+          "event_id": "EV-41C8F439D2",
+          "kind": "wall",
+          "contact_time_s": 2.844527,
+          "contact_mm": [
+            -334.289,
+            -54.462
+          ],
+          "normal": [
+            -0.939693,
+            -0.34202
+          ],
+          "restitution": 0.9085,
+          "incoming_sensor_ids": [
+            "CH-PD1-13CE"
+          ],
+          "outgoing_sensor_ids": [
+            "CH-LLD-2CB9"
+          ],
+          "pairs": [
+            [
+              "CH-PD1-13CE",
+              "CH-LLD-2CB9"
+            ]
+          ]
+        },
+        {
+          "event_id": "EV-C3AFA40BA7",
+          "kind": "wall",
+          "contact_time_s": 3.515863,
+          "contact_mm": [
+            324.394,
+            240.962
+          ],
+          "normal": [
+            0.939693,
+            0.34202
+          ],
+          "restitution": 0.8678,
+          "incoming_sensor_ids": [
+            "CH-1NR-6CFE"
+          ],
+          "outgoing_sensor_ids": [
+            "CH-UAD-DAFF"
+          ],
+          "pairs": [
+            [
+              "CH-1NR-6CFE",
+              "CH-UAD-DAFF"
+            ]
+          ]
+        },
+        {
+          "event_id": "EV-BA9CE9EE08",
+          "kind": "wall",
+          "contact_time_s": 4.244643,
+          "contact_mm": [
+            -120.414,
+            197.392
+          ],
+          "normal": [
+            -0.34202,
+            0.939693
+          ],
+          "restitution": 0.774,
+          "incoming_sensor_ids": [
+            "CH-XL8-1E15"
+          ],
+          "outgoing_sensor_ids": [
+            "CH-0SN-FFD7"
+          ],
+          "pairs": [
+            [
+              "CH-XL8-1E15",
+              "CH-0SN-FFD7"
+            ]
+          ]
+        },
+        {
+          "event_id": "EV-FA89BB08C7",
+          "kind": "wall",
+          "contact_time_s": 4.826161,
+          "contact_mm": [
+            113.954,
+            -270.677
+          ],
+          "normal": [
+            0.34202,
+            -0.939693
+          ],
+          "restitution": 0.8091,
+          "incoming_sensor_ids": [
+            "CH-FW6-BA5D"
+          ],
+          "outgoing_sensor_ids": [
+            "CH-QXF-711F"
+          ],
+          "pairs": [
+            [
+              "CH-FW6-BA5D",
+              "CH-QXF-711F"
+            ]
+          ]
+        },
+        {
+          "event_id": "EV-974DA740B1",
+          "kind": "wall",
+          "contact_time_s": 5.408032,
+          "contact_mm": [
+            -294.832,
+            -162.87
+          ],
+          "normal": [
+            -0.939693,
+            -0.34202
+          ],
+          "restitution": 0.905,
+          "incoming_sensor_ids": [
+            "CH-W89-7B56"
+          ],
+          "outgoing_sensor_ids": [
+            "CH-RHK-9D5A"
+          ],
+          "pairs": [
+            [
+              "CH-W89-7B56",
+              "CH-RHK-9D5A"
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "experiment_id": "EX-C2F4-70D9",
+      "sensor_to_track": {
+        "CH-EZE-FFE4": "TRK-04848634DE",
+        "CH-Z9P-8334": "TRK-04848634DE",
+        "CH-4CT-B3F3": "TRK-0E268870CE",
+        "CH-QH4-169F": "TRK-0E268870CE",
+        "CH-7K9-9A1E": "TRK-BD611450EC",
+        "CH-VKG-8DEF": "TRK-BD611450EC",
+        "CH-FAE-B7A4": "TRK-5F4F69A726",
+        "CH-ZHH-6A26": "TRK-5F4F69A726",
+        "CH-0GS-2F20": "TRK-A502726408",
+        "CH-JTT-F013": "TRK-A502726408",
+        "CH-NCS-E872": "TRK-72189C3AF1",
+        "CH-UUF-6525": "TRK-72189C3AF1",
+        "CH-5VF-7217": "TRK-3D01D0F952",
+        "CH-QRB-15A3": "TRK-3D01D0F952",
+        "CH-FCY-9540": "TRK-55FDA18FB4",
+        "CH-RUR-6314": "TRK-55FDA18FB4",
+        "CH-5JB-2CEC": "TRK-3AFE834712",
+        "CH-TK1-1E63": "TRK-3AFE834712",
+        "CH-CUC-2C78": "TRK-1EECCE2778",
+        "CH-XRN-FD03": "TRK-1EECCE2778",
+        "CH-42L-E9A5": "TRK-BF7E275BB9",
+        "CH-XMD-012F": "TRK-BF7E275BB9",
+        "CH-LRV-F473": "TRK-EBA83893AE",
+        "CH-MZP-05F9": "TRK-EBA83893AE",
+        "CH-0KP-E468": "TRK-C1B526167A",
+        "CH-Y78-A334": "TRK-C1B526167A"
+      },
+      "tracks": [
+        {
+          "track_id": "TRK-04848634DE",
+          "sensor_ids": [
+            "CH-EZE-FFE4",
+            "CH-Z9P-8334"
+          ],
+          "mass_mg": 2050.0
+        },
+        {
+          "track_id": "TRK-0E268870CE",
+          "sensor_ids": [
+            "CH-4CT-B3F3",
+            "CH-QH4-169F"
+          ],
+          "mass_mg": 1460.0
+        },
+        {
+          "track_id": "TRK-1EECCE2778",
+          "sensor_ids": [
+            "CH-CUC-2C78",
+            "CH-XRN-FD03"
+          ],
+          "mass_mg": 1460.0
+        },
+        {
+          "track_id": "TRK-3AFE834712",
+          "sensor_ids": [
+            "CH-5JB-2CEC",
+            "CH-TK1-1E63"
+          ],
+          "mass_mg": 2050.0
+        },
+        {
+          "track_id": "TRK-3D01D0F952",
+          "sensor_ids": [
+            "CH-5VF-7217",
+            "CH-QRB-15A3"
+          ],
+          "mass_mg": 1460.0
+        },
+        {
+          "track_id": "TRK-55FDA18FB4",
+          "sensor_ids": [
+            "CH-FCY-9540",
+            "CH-RUR-6314"
+          ],
+          "mass_mg": 2050.0
+        },
+        {
+          "track_id": "TRK-5F4F69A726",
+          "sensor_ids": [
+            "CH-FAE-B7A4",
+            "CH-ZHH-6A26"
+          ],
+          "mass_mg": 2050.0
+        },
+        {
+          "track_id": "TRK-72189C3AF1",
+          "sensor_ids": [
+            "CH-NCS-E872",
+            "CH-UUF-6525"
+          ],
+          "mass_mg": 1180.0
+        },
+        {
+          "track_id": "TRK-A502726408",
+          "sensor_ids": [
+            "CH-0GS-2F20",
+            "CH-JTT-F013"
+          ],
+          "mass_mg": 910.0
+        },
+        {
+          "track_id": "TRK-BD611450EC",
+          "sensor_ids": [
+            "CH-7K9-9A1E",
+            "CH-VKG-8DEF"
+          ],
+          "mass_mg": 910.0
+        },
+        {
+          "track_id": "TRK-BF7E275BB9",
+          "sensor_ids": [
+            "CH-42L-E9A5",
+            "CH-XMD-012F"
+          ],
+          "mass_mg": 1750.0
+        },
+        {
+          "track_id": "TRK-C1B526167A",
+          "sensor_ids": [
+            "CH-0KP-E468",
+            "CH-Y78-A334"
+          ],
+          "mass_mg": 2050.0
+        },
+        {
+          "track_id": "TRK-EBA83893AE",
+          "sensor_ids": [
+            "CH-LRV-F473",
+            "CH-MZP-05F9"
+          ],
+          "mass_mg": 1460.0
+        }
+      ],
+      "events": [
+        {
+          "event_id": "EV-42B5B7FEDE",
+          "kind": "particle",
+          "contact_time_s": 1.319174,
+          "contact_mm": [
+            -260.994,
+            44.076
+          ],
+          "normal": [
+            0.874566,
+            0.484907
+          ],
+          "restitution": 0.772,
+          "incoming_sensor_ids": [
+            "CH-EZE-FFE4",
+            "CH-QH4-169F"
+          ],
+          "outgoing_sensor_ids": [
+            "CH-4CT-B3F3",
+            "CH-Z9P-8334"
+          ],
+          "pairs": [
+            [
+              "CH-EZE-FFE4",
+              "CH-Z9P-8334"
+            ],
+            [
+              "CH-QH4-169F",
+              "CH-4CT-B3F3"
+            ]
+          ]
+        },
+        {
+          "event_id": "EV-FEDB227044",
+          "kind": "particle",
+          "contact_time_s": 2.0034,
+          "contact_mm": [
+            48.194,
+            49.841
+          ],
+          "normal": [
+            0.577002,
+            -0.816743
+          ],
+          "restitution": 0.763,
+          "incoming_sensor_ids": [
+            "CH-VKG-8DEF",
+            "CH-ZHH-6A26"
+          ],
+          "outgoing_sensor_ids": [
+            "CH-7K9-9A1E",
+            "CH-FAE-B7A4"
+          ],
+          "pairs": [
+            [
+              "CH-VKG-8DEF",
+              "CH-7K9-9A1E"
+            ],
+            [
+              "CH-ZHH-6A26",
+              "CH-FAE-B7A4"
+            ]
+          ]
+        },
+        {
+          "event_id": "EV-AA336132F8",
+          "kind": "particle",
+          "contact_time_s": 2.454731,
+          "contact_mm": [
+            170.144,
+            145.968
+          ],
+          "normal": [
+            0.207875,
+            0.978155
+          ],
+          "restitution": 0.6794,
+          "incoming_sensor_ids": [
+            "CH-0GS-2F20",
+            "CH-UUF-6525"
+          ],
+          "outgoing_sensor_ids": [
+            "CH-JTT-F013",
+            "CH-NCS-E872"
+          ],
+          "pairs": [
+            [
+              "CH-0GS-2F20",
+              "CH-JTT-F013"
+            ],
+            [
+              "CH-UUF-6525",
+              "CH-NCS-E872"
+            ]
+          ]
+        },
+        {
+          "event_id": "EV-5BE0E942D7",
+          "kind": "particle",
+          "contact_time_s": 2.928137,
+          "contact_mm": [
+            -151.733,
+            76.478
+          ],
+          "normal": [
+            0.973582,
+            0.228337
+          ],
+          "restitution": 0.9302,
+          "incoming_sensor_ids": [
+            "CH-5VF-7217",
+            "CH-FCY-9540"
+          ],
+          "outgoing_sensor_ids": [
+            "CH-QRB-15A3",
+            "CH-RUR-6314"
+          ],
+          "pairs": [
+            [
+              "CH-5VF-7217",
+              "CH-QRB-15A3"
+            ],
+            [
+              "CH-FCY-9540",
+              "CH-RUR-6314"
+            ]
+          ]
+        },
+        {
+          "event_id": "EV-5DE67A9ECF",
+          "kind": "particle",
+          "contact_time_s": 3.441963,
+          "contact_mm": [
+            -78.612,
+            -179.053
+          ],
+          "normal": [
+            0.59994,
+            0.800045
+          ],
+          "restitution": 0.6699,
+          "incoming_sensor_ids": [
+            "CH-5JB-2CEC",
+            "CH-XRN-FD03"
+          ],
+          "outgoing_sensor_ids": [
+            "CH-CUC-2C78",
+            "CH-TK1-1E63"
+          ],
+          "pairs": [
+            [
+              "CH-5JB-2CEC",
+              "CH-TK1-1E63"
+            ],
+            [
+              "CH-XRN-FD03",
+              "CH-CUC-2C78"
+            ]
+          ]
+        },
+        {
+          "event_id": "EV-BF7E275BB9",
+          "kind": "wall",
+          "contact_time_s": 3.903053,
+          "contact_mm": [
+            -151.843,
+            185.953
+          ],
+          "normal": [
+            -0.34202,
+            0.939693
+          ],
+          "restitution": 0.7692,
+          "incoming_sensor_ids": [
+            "CH-XMD-012F"
+          ],
+          "outgoing_sensor_ids": [
+            "CH-42L-E9A5"
+          ],
+          "pairs": [
+            [
+              "CH-XMD-012F",
+              "CH-42L-E9A5"
+            ]
+          ]
+        },
+        {
+          "event_id": "EV-EBA83893AE",
+          "kind": "wall",
+          "contact_time_s": 4.361504,
+          "contact_mm": [
+            61.278,
+            -289.85
+          ],
+          "normal": [
+            0.34202,
+            -0.939693
+          ],
+          "restitution": 0.8227,
+          "incoming_sensor_ids": [
+            "CH-LRV-F473"
+          ],
+          "outgoing_sensor_ids": [
+            "CH-MZP-05F9"
+          ],
+          "pairs": [
+            [
+              "CH-LRV-F473",
+              "CH-MZP-05F9"
+            ]
+          ]
+        },
+        {
+          "event_id": "EV-C1B526167A",
+          "kind": "wall",
+          "contact_time_s": 4.902137,
+          "contact_mm": [
+            337.96,
+            203.688
+          ],
+          "normal": [
+            0.939693,
+            0.34202
+          ],
+          "restitution": 0.8836,
+          "incoming_sensor_ids": [
+            "CH-0KP-E468"
+          ],
+          "outgoing_sensor_ids": [
+            "CH-Y78-A334"
+          ],
+          "pairs": [
+            [
+              "CH-0KP-E468",
+              "CH-Y78-A334"
+            ]
+          ]
+        }
+      ]
+    }
+  ],
+  "wall_models": [
+    {
+      "wall_id": "W-A",
+      "normal": [
+        -0.939693,
+        -0.34202
+      ],
+      "offset_mm": 332.756,
+      "restitution": 0.9097
+    },
+    {
+      "wall_id": "W-B",
+      "normal": [
+        0.34202,
+        -0.939693
+      ],
+      "offset_mm": 293.328,
+      "restitution": 0.8135
+    },
+    {
+      "wall_id": "W-C",
+      "normal": [
+        0.939693,
+        0.34202
+      ],
+      "offset_mm": 387.244,
+      "restitution": 0.8731
+    },
+    {
+      "wall_id": "W-D",
+      "normal": [
+        -0.34202,
+        0.939693
+      ],
+      "offset_mm": 226.672,
+      "restitution": 0.7701
+    }
+  ],
+  "summary": {
+    "experiment_count": 3,
+    "sensor_count": 72,
+    "event_count": 24,
+    "particle_event_count": 12,
+    "wall_event_count": 12,
+    "max_momentum_error": 0.0,
+    "min_energy_loss": 0.134658
+  }
+}

@@ -1,0 +1,191 @@
+{
+  "schema_version": 1,
+  "weight_policy": {
+    "version": 1,
+    "basis": "business_priority",
+    "core_min_share": 0.5
+  },
+  "gate_tests": [
+    "test_outputs.py::test_candidate_help_is_available",
+    "test_outputs.py::test_reference_batch_partition_is_complete",
+    "test_outputs.py::test_success_channels_are_silent",
+    "test_outputs.py::test_structural_refusal_preserves_both_targets"
+  ],
+  "tests": {
+    "test_outputs.py::test_report_top_level_schema_is_exact": {
+      "weight": 0.1,
+      "priority": "core",
+      "rationale": "顶层交付结构决定实验册是否能被下游标定流程稳定消费。"
+    },
+    "test_outputs.py::test_experiment_track_and_event_schema_is_exact": {
+      "weight": 0.1,
+      "priority": "core",
+      "rationale": "嵌套事件与轨迹字段决定几何反解结果是否完整可审计。"
+    },
+    "test_outputs.py::test_sensor_track_map_and_mass_recover_unknown_correspondence": {
+      "weight": 0.1,
+      "priority": "core",
+      "rationale": "未标号传感器到粒子轨迹的映射是本题不可替代的核心产物。"
+    },
+    "test_outputs.py::test_particle_pairs_use_mass_and_momentum_closure": {
+      "weight": 0.1,
+      "priority": "core",
+      "rationale": "碰撞前后片段配对决定动量闭合与非弹性碰撞是否物理成立。"
+    },
+    "test_outputs.py::test_wall_models_recover_contact_support": {
+      "weight": 0.1,
+      "priority": "core",
+      "rationale": "四面壁面模型必须闭合，否则跨实验标定参数不能继续使用。"
+    },
+    "test_outputs.py::test_repeated_batch_is_ledger_byte_idempotent": {
+      "weight": 0.1,
+      "priority": "core",
+      "rationale": "重复批次不改写账本是跨运行实验账本能够重放的关键保障。"
+    },
+    "test_outputs.py::test_report_serialization_uses_compact_sorted_bytes": {
+      "weight": 0.02,
+      "priority": "schema",
+      "rationale": "报告原始字节规范决定摘要和账本条目是否稳定一致。"
+    },
+    "test_outputs.py::test_input_hash_uses_original_bytes": {
+      "weight": 0.013,
+      "priority": "schema",
+      "rationale": "输入原始字节摘要是实验重放和重复提交识别的基础。"
+    },
+    "test_outputs.py::test_experiment_order_follows_input": {
+      "weight": 0.013,
+      "priority": "schema",
+      "rationale": "批次实验顺序影响下游逐项复核与现场记录对照。"
+    },
+    "test_outputs.py::test_event_order_and_event_id_are_canonical": {
+      "weight": 0.014,
+      "priority": "schema",
+      "rationale": "事件顺序和稳定编号保证多次运行的结果可比较。"
+    },
+    "test_outputs.py::test_track_ids_are_sorted_and_hashed": {
+      "weight": 0.014,
+      "priority": "schema",
+      "rationale": "轨迹编号由成员稳定导出，才能支撑跨运行关联。"
+    },
+    "test_outputs.py::test_contact_position_uses_euclidean_tolerance": {
+      "weight": 0.014,
+      "priority": "supporting",
+      "rationale": "接触位置使用独立欧氏距离口径，防止几何误差被方向指标掩盖。"
+    },
+    "test_outputs.py::test_particle_normal_direction_uses_true_angle": {
+      "weight": 0.014,
+      "priority": "supporting",
+      "rationale": "碰撞法向必须按真实夹角检查，不能由位置误差替代。"
+    },
+    "test_outputs.py::test_particle_restitution_uses_normal_relative_velocity": {
+      "weight": 0.014,
+      "priority": "supporting",
+      "rationale": "恢复系数直接反映非弹性碰撞的能量损失，是核心物理量。"
+    },
+    "test_outputs.py::test_wall_normal_direction_uses_true_angle": {
+      "weight": 0.014,
+      "priority": "supporting",
+      "rationale": "壁面外法向角度单独判定，避免仅靠偏移通过。"
+    },
+    "test_outputs.py::test_wall_offset_is_independent_signed_distance": {
+      "weight": 0.014,
+      "priority": "supporting",
+      "rationale": "壁线有符号偏移与法向角度是两个独立失败维度。"
+    },
+    "test_outputs.py::test_wall_restitution_closes_each_surface": {
+      "weight": 0.014,
+      "priority": "supporting",
+      "rationale": "每面墙的恢复系数体现该壁面的耗能特性，决定后续反弹预测。"
+    },
+    "test_outputs.py::test_momentum_summary_reports_particle_residual": {
+      "weight": 0.014,
+      "priority": "supporting",
+      "rationale": "动量残差摘要用于确认配对没有破坏守恒关系。"
+    },
+    "test_outputs.py::test_energy_summary_is_nonnegative_and_close": {
+      "weight": 0.014,
+      "priority": "supporting",
+      "rationale": "非负能量损失是排除增益型伪碰撞的重要物理约束。"
+    },
+    "test_outputs.py::test_rounding_precision_and_negative_zero_are_controlled": {
+      "weight": 0.014,
+      "priority": "schema",
+      "rationale": "固定舍入精度和负零处理保证物理数值的字节稳定。"
+    },
+    "test_outputs.py::test_first_ledger_entry_has_exact_schema_and_digest": {
+      "weight": 0.014,
+      "priority": "schema",
+      "rationale": "账本首条记录的字段和摘要必须能被独立重算。"
+    },
+    "test_outputs.py::test_new_success_appends_one_ledger_line": {
+      "weight": 0.014,
+      "priority": "recovery",
+      "rationale": "新的成功批次只追加一行，保护已有实验历史不被重排。"
+    },
+    "test_outputs.py::test_duplicate_top_level_key_is_refused": {
+      "weight": 0.013,
+      "priority": "boundary",
+      "rationale": "重复顶层键会破坏输入语义，应在计算前拒绝。"
+    },
+    "test_outputs.py::test_missing_sensor_mass_is_refused": {
+      "weight": 0.013,
+      "priority": "boundary",
+      "rationale": "缺少质量会令碰撞配对不唯一，必须阻止半成品实验册。"
+    },
+    "test_outputs.py::test_extra_nested_key_is_refused": {
+      "weight": 0.013,
+      "priority": "boundary",
+      "rationale": "传感器额外键可能代表未定义的采集语义，不能被静默忽略。"
+    },
+    "test_outputs.py::test_boolean_schema_version_is_not_an_integer": {
+      "weight": 0.013,
+      "priority": "boundary",
+      "rationale": "布尔值冒充整数会绕过版本校验，必须按类型边界拒绝。"
+    },
+    "test_outputs.py::test_input_at_exact_byte_limit_is_accepted": {
+      "weight": 0.013,
+      "priority": "boundary",
+      "rationale": "公开字节上界本身应可处理，避免实现出现差一错误。"
+    },
+    "test_outputs.py::test_input_one_byte_over_limit_is_refused": {
+      "weight": 0.013,
+      "priority": "boundary",
+      "rationale": "最小越界一个字节的输入必须拒绝，并且不得触碰已有输出目标。"
+    },
+    "test_outputs.py::test_sensor_count_must_be_even_and_in_range": {
+      "weight": 0.013,
+      "priority": "boundary",
+      "rationale": "片段数量与事件覆盖相关，奇数输入无法形成合法接触分区。"
+    },
+    "test_outputs.py::test_duplicate_channel_is_refused": {
+      "weight": 0.013,
+      "priority": "boundary",
+      "rationale": "同实验重复通道会破坏传感器与粒子的可追踪身份。"
+    },
+    "test_outputs.py::test_duplicate_experiment_id_is_refused": {
+      "weight": 0.013,
+      "priority": "boundary",
+      "rationale": "重复实验编号会污染跨运行账本的实验来源。"
+    },
+    "test_outputs.py::test_wall_label_enumeration_is_exact": {
+      "weight": 0.013,
+      "priority": "boundary",
+      "rationale": "壁面标签集合和顺序错误会使四面模型对应关系失效。"
+    },
+    "test_outputs.py::test_malformed_ledger_preserves_report_and_ledger": {
+      "weight": 0.014,
+      "priority": "recovery",
+      "rationale": "账本损坏时保持两个旧目标，避免覆盖唯一可审计历史。"
+    },
+    "test_outputs.py::test_second_target_replace_failure_rolls_back": {
+      "weight": 0.014,
+      "priority": "recovery",
+      "rationale": "第二个目标替换失败后回滚报告，验证跨文件事务完整性。"
+    },
+    "test_outputs.py::test_batch_completes_within_public_limit": {
+      "weight": 0.014,
+      "priority": "supporting",
+      "rationale": "公开上界规模的实际耗时决定批次调度能否按时收口。"
+    }
+  }
+}

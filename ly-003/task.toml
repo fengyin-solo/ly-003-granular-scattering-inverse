@@ -1,0 +1,27 @@
+schema_version = "1.3"
+
+[task]
+name = "local/ly-003-granular-scattering-inverse"
+description = "Recover unlabeled billiard fragments, collision closures, wall models, and a transactional run ledger."
+authors = [{ name = "fengyin" }]
+keywords = ["physics-simulation", "billiards", "inverse-geometry", "pytest", "transactional-ledger"]
+
+[agent]
+timeout_sec = 3600
+
+[environment]
+build_timeout_sec = 600
+cpus = 1
+memory_mb = 2048
+storage_mb = 10240
+gpus = 0
+allow_internet = true
+
+[verifier]
+timeout_sec = 120
+
+[metadata]
+difficulty = "hard"
+category = "physics-simulation"
+tags = ["event-reconstruction", "geometry", "inelastic-collision", "atomic-ledger"]
+expert_time_estimate = "75m"
