@@ -6,11 +6,13 @@ REWARD_FILE="$LOG_DIR/reward.txt"
 STATUS_FILE="$LOG_DIR/verification-status.txt"
 TEST_LOG="$LOG_DIR/test-stdout.txt"
 REPORT="$LOG_DIR/pytest-results.xml"
-TMP_ROOT=/tmp/ly003-verifier
-TOOLS_DIR="$TMP_ROOT/pytest-tools"
+TMP_ROOT=/tmp/ly-003-verifier
+TRUSTED_PYTHON=/usr/local/bin/python3
+TRUSTED_TIMEOUT=/usr/bin/timeout
 completed=0
 
 mkdir -p "$LOG_DIR" "$TMP_ROOT"
+chmod 0755 "$LOG_DIR"
 chmod 0777 "$TMP_ROOT"
 
 write_reward() {
@@ -32,7 +34,7 @@ cleanup() {
 on_exit() {
     cleanup
     if [ "$completed" -ne 1 ]; then
-        write_status "INCOMPLETE: verifier exited before scoring completed"
+        write_status "INCOMPLETE: verifier exited before pytest completion"
         write_reward 0.000
     fi
 }
@@ -49,24 +51,34 @@ trap on_exit EXIT
 trap on_signal INT TERM HUP
 write_reward 0.000
 write_status "INCOMPLETE: pytest has not completed"
-rm -rf "$TOOLS_DIR"
 rm -f "$REPORT" "$TEST_LOG" "$LOG_DIR/scoring-report.json"
 
-if ! /usr/local/bin/python3 -m pip install \
+VERIFIER_SITE=/opt/verifier-site
+SITE_PACKAGES="$VERIFIER_SITE"
+rm -rf "$VERIFIER_SITE"
+mkdir -p "$VERIFIER_SITE"
+chmod 0755 "$VERIFIER_SITE"
+if ! /usr/bin/env -i \
+    PATH=/usr/local/bin:/usr/bin:/bin \
+    HOME=/tmp \
+    PYTHONNOUSERSITE=1 \
+    PYTEST_DISABLE_PLUGIN_AUTOLOAD=1 \
+    PYTHONDONTWRITEBYTECODE=1 \
+    "$TRUSTED_PYTHON" -I -B -m pip install \
     --disable-pip-version-check \
+    --no-cache-dir \
     --no-index \
     --find-links=/opt/vendor \
-    --target="$TOOLS_DIR" \
-    pytest==8.4.2 > "$LOG_DIR/pytest-setup.txt" 2>&1; then
-    write_status "INCOMPLETE: local pytest runtime could not be prepared"
+    --target="$VERIFIER_SITE" \
+    pytest==8.4.2 > "$LOG_DIR/pytest-install.txt" 2>&1; then
+    write_status "INCOMPLETE: trusted pytest dependency installation failed"
     write_reward 0.000
     completed=1
     exit 0
 fi
 
 set +e
-/usr/bin/timeout --signal=TERM --kill-after=10s 90s \
-    /usr/bin/env -i \
+/usr/bin/env -i \
     PATH=/usr/local/bin:/usr/bin:/bin \
     HOME=/tmp \
     TMPDIR="$TMP_ROOT" \
@@ -76,8 +88,9 @@ set +e
     PYTHONNOUSERSITE=1 \
     PYTEST_DISABLE_PLUGIN_AUTOLOAD=1 \
     PYTHONDONTWRITEBYTECODE=1 \
-    PYTHONPATH="$TOOLS_DIR:/tests" \
-    /usr/local/bin/python3 -S -s -P -B -m pytest -vv -p no:cacheprovider \
+    PYTHONPATH="$SITE_PACKAGES:/tests" \
+    "$TRUSTED_TIMEOUT" --signal=TERM --kill-after=10s 90s \
+    "$TRUSTED_PYTHON" -S -s -P -B -m pytest -v -s -p no:cacheprovider \
     --junitxml="$REPORT" /tests/test_outputs.py > "$TEST_LOG" 2>&1
 RC=$?
 set -e
@@ -89,26 +102,35 @@ if [ "$RC" -ne 0 ] && [ "$RC" -ne 1 ]; then
 elif [ ! -s "$REPORT" ]; then
     write_status "INCOMPLETE: pytest completion report missing"
     write_reward 0.000
-elif ! /usr/local/bin/python3 /tests/score.py \
-    --config /tests/scoring.json \
-    --junit "$REPORT" \
-    --report-out "$LOG_DIR/scoring-report.json" \
-    --reward-out "$REWARD_FILE"; then
-    write_status "INCOMPLETE: weighted scorer rejected the completion report"
-    write_reward 0.000
 else
-    REWARD=$(cat "$REWARD_FILE")
-    case "$REWARD" in
-        0.[0-9][0-9][0-9]|1.000) ;;
-        *)
-            write_status "INCOMPLETE: weighted scorer produced invalid reward"
-            write_reward 0.000
-            completed=1
-            exit 0
-            ;;
-    esac
-    chmod 0444 "$REWARD_FILE"
-    write_status "COMPLETED: weighted scoring finished with reward=$REWARD"
+    if ! /usr/bin/env -i \
+        PATH=/usr/local/bin:/usr/bin:/bin \
+        HOME=/tmp \
+        PYTHONNOUSERSITE=1 \
+        PYTEST_DISABLE_PLUGIN_AUTOLOAD=1 \
+        PYTHONDONTWRITEBYTECODE=1 \
+        PYTHONPATH="$SITE_PACKAGES:/tests" \
+        "$TRUSTED_PYTHON" -S -s -P -B /tests/score.py \
+        --config /tests/scoring.json \
+        --junit "$REPORT" \
+        --report-out "$LOG_DIR/scoring-report.json" \
+        --reward-out "$REWARD_FILE"; then
+        write_status "INCOMPLETE: weighted scorer rejected the completion report"
+        write_reward 0.000
+    else
+        REWARD=$(cat "$REWARD_FILE")
+        case "$REWARD" in
+            0.[0-9][0-9][0-9]|1.000) ;;
+            *)
+                write_status "INCOMPLETE: weighted scorer produced invalid reward"
+                write_reward 0.000
+                completed=1
+                exit 0
+                ;;
+        esac
+        chmod 0444 "$REWARD_FILE"
+        write_status "COMPLETED: weighted scoring finished with reward=$REWARD"
+    fi
 fi
 
 completed=1

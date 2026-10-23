@@ -294,6 +294,7 @@ def test_wall_models_recover_contact_support(baseline: SimpleNamespace) -> None:
     assert len(walls) == 4
     assert all(math.isclose(sum(value * value for value in wall["normal"]), 1.0, abs_tol=1e-5) for wall in walls)
     assert all(0.0 <= wall["restitution"] <= 1.0 for wall in walls)
+    assert len({wall["restitution"] for wall in walls}) > 1
 
 
 def test_repeated_batch_is_ledger_byte_idempotent(baseline: SimpleNamespace) -> None:
@@ -662,9 +663,13 @@ def test_boolean_schema_version_is_not_an_integer(tmp_path: Path) -> None:
     assert not list(output_path.parent.glob("*.bak"))
 
 
-def test_input_at_exact_byte_limit_is_accepted(tmp_path: Path) -> None:
+def test_input_at_exact_byte_limit_is_accepted(
+    tmp_path: Path,
+    baseline: SimpleNamespace,
+) -> None:
     """题面：“待读的实验文件采用 UTF-8 编码，文件体量不超过 `262144` 字节。”"""
     _case("BOUND-01")
+    print("HARDCODE-BASE INPUT_SCENARIO_BASE")
     root = tmp_path / "case_07"
     root.mkdir()
     input_path = root / "input.json"
@@ -693,6 +698,32 @@ def test_input_at_exact_byte_limit_is_accepted(tmp_path: Path) -> None:
     assert shifted.returncode == 0
     assert shifted.output_path.is_file()
     assert shifted.ledger_path.is_file()
+    print("HARDCODE-VARIANT INPUT_SCENARIO_SHIFTED_TIME")
+    shifted_result = json.loads(shifted.output_path.read_text(encoding="utf-8"))
+    baseline_events = sorted(
+        (
+            event
+            for experiment in baseline.report["experiments"]
+            for event in experiment["events"]
+        ),
+        key=lambda event: event["event_id"],
+    )
+    shifted_events = sorted(
+        (
+            event
+            for experiment in shifted_result["experiments"]
+            for event in experiment["events"]
+        ),
+        key=lambda event: event["event_id"],
+    )
+    assert [event["event_id"] for event in shifted_events] == [
+        event["event_id"] for event in baseline_events
+    ]
+    assert all(
+        shifted_event["contact_time_s"]
+        == pytest.approx(event["contact_time_s"] - first_start, abs=0.000002)
+        for event, shifted_event in zip(baseline_events, shifted_events)
+    )
 
 
 def test_input_one_byte_over_limit_is_refused(tmp_path: Path) -> None:
