@@ -28,7 +28,7 @@ python3 /app/analyze.py --input INPUT.json --ledger LEDGER.jsonl --output REPORT
 
 粒子碰撞的法向取碰撞冲量方向，并规范成 `nx > 0`，或在 `nx == 0` 时取 `ny >= 0`。壁面事件的 `normal` 是外法向，单位向量，指向台面外侧。`contact_mm` 是接触点坐标。`contact_time_s` 保留六位小数，`contact_mm` 与 `wall_models.offset_mm` 保留三位小数，`normal` 保留六位小数，`restitution` 保留四位小数；所有舍入都按十进制 `ROUND_HALF_UP`，不接受二进制浮点的银行家舍入。比较恢复后的几何时，法向方向按真实夹角计算，容差为 `0.35` 度；接触位置按欧氏距离计算，容差为 `0.35` 毫米；壁线有符号偏移按外法向点积计算，容差为 `0.45` 毫米；恢复系数容差为 `0.0015`。位置容差不能代替方向容差，反过来也不行。
 
-`wall_models` 恰好四项，顺序为 `W-A`、`W-B`、`W-C`、`W-D`。每项恰好包含 `wall_id`、`normal`、`offset_mm`、`restitution`。墙编号按外法向极角从 `-pi` 到 `pi` 升序对应，`offset_mm` 是同一个外单位法向与墙线任一点的点积。`summary` 恰好包含 `experiment_count`、`sensor_count`、`event_count`、`particle_event_count`、`wall_event_count`、`max_momentum_error`、`min_energy_loss`。前五项为非负整数；`max_momentum_error` 是全部粒子碰撞中 `|delta p_1 + delta p_2|` 的最大值，取 `mg * mm/s`，保留六位小数；`min_energy_loss` 是按 `1 - K_out/K_in` 计算的全部粒子与壁面事件最小值，保留六位小数且不得小于零。
+`wall_models` 恰好四项，顺序为 `W-A`、`W-B`、`W-C`、`W-D`。每项恰好包含 `wall_id`、`normal`、`offset_mm`、`restitution`。墙编号按外法向极角从 `-pi` 到 `pi` 升序对应，`offset_mm` 是同一个外单位法向与墙线任一点的点积。同一壁面的 `restitution` 是该面全部接触事件法向恢复系数的算术平均值；单个事件的法向恢复系数为出射速度在外法向上的分量除以入射速度向内分量的绝对值。`summary` 恰好包含 `experiment_count`、`sensor_count`、`event_count`、`particle_event_count`、`wall_event_count`、`max_momentum_error`、`min_energy_loss`。前五项为非负整数；`max_momentum_error` 是全部粒子碰撞中 `|delta p_1 + delta p_2|` 的最大值，取 `mg * mm/s`，保留六位小数；`min_energy_loss` 是按 `1 - K_out/K_in` 计算的全部粒子与壁面事件最小值，保留六位小数且不得小于零。
 
 ## 账本和失败边界
 

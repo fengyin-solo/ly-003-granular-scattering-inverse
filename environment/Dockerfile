@@ -11,6 +11,4 @@ RUN useradd --create-home --uid 10001 --shell /usr/sbin/nologin appuser \
     && mkdir -p /logs/verifier \
     && chown -R appuser:appuser /app /logs/verifier
 
-USER appuser
-
 CMD ["python3", "/app/analyze.py", "--help"]

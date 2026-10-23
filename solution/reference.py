@@ -116,10 +116,15 @@ def parse_sensor(sensor: Any, used_channels: set[str]) -> None:
         raise InputError("time_s must contain two numbers")
     start_time = number(times[0], "time start")
     end_time = number(times[1], "time end")
-    if not (0.0 <= start_time < end_time <= 12.0):
+    duration = end_time - start_time
+    if (
+        start_time < 0.0
+        or not start_time < end_time
+        or end_time > 12.0
+        or duration < 0.010
+        or duration > 0.400
+    ):
         raise InputError("time range is invalid")
-    if not (0.010 <= end_time - start_time <= 0.400):
-        raise InputError("time duration is invalid")
     points = sensor["points_mm"]
     if not isinstance(points, list) or len(points) != 2:
         raise InputError("points_mm must contain two coordinates")
@@ -129,17 +134,17 @@ def parse_sensor(sensor: Any, used_channels: set[str]) -> None:
             raise InputError("coordinate must contain two numbers")
         x = number(point[0], "point x")
         y = number(point[1], "point y")
-        if not (-800.0 <= x <= 800.0 and -800.0 <= y <= 800.0):
+        if x < -800.0 or x > 800.0 or y < -800.0 or y > 800.0:
             raise InputError("coordinate is outside the public range")
         coordinates.append([x, y])
     distance = math.hypot(
         coordinates[1][0] - coordinates[0][0],
         coordinates[1][1] - coordinates[0][1],
     )
-    if not (5.0 <= distance <= 220.0):
+    if distance < 5.0 or distance > 220.0:
         raise InputError("fragment length is invalid")
     mass_mg = number(sensor["mass_mg"], "mass_mg")
-    if not (500.0 <= mass_mg <= 2500.0):
+    if mass_mg < 500.0 or mass_mg > 2500.0:
         raise InputError("mass_mg is outside the public range")
 
 
@@ -155,7 +160,11 @@ def validate_payload(payload: dict[str, Any]) -> None:
     if conventions["length_unit"] != "mm" or conventions["time_unit"] != "s":
         raise InputError("conventions are invalid")
     experiments = payload["experiments"]
-    if not isinstance(experiments, list) or not (1 <= len(experiments) <= 6):
+    if (
+        not isinstance(experiments, list)
+        or len(experiments) < 1
+        or len(experiments) > 6
+    ):
         raise InputError("experiments must contain 1 through 6 items")
     seen_experiments: set[str] = set()
     for experiment in experiments:
@@ -176,7 +185,8 @@ def validate_payload(payload: dict[str, Any]) -> None:
         if (
             not isinstance(sensors, list)
             or len(sensors) % 2 != 0
-            or not (8 <= len(sensors) <= 48)
+            or len(sensors) < 8
+            or len(sensors) > 48
         ):
             raise InputError("sensors must be an even array of 8 through 48 items")
         used_channels: set[str] = set()
@@ -210,7 +220,7 @@ def norm(vector: list[float]) -> float:
 
 def unit(vector: list[float]) -> list[float]:
     length = norm(vector)
-    if length <= 1e-12:
+    if not length > 1e-12:
         raise ResultAmbiguous("zero-length velocity or normal")
     return [vector[0] / length, vector[1] / length]
 
@@ -298,7 +308,7 @@ def projected_gap(fragment: Fragment, point: list[float], contact_time: float) -
         dt = fragment.start_time - contact_time
     else:
         return None
-    if not (2.5 <= gap <= 45.0 and 0.0 < dt <= 0.400):
+    if gap < 2.5 or gap > 45.0 or dt < 0.0 or dt > 0.400 or dt == 0.0:
         return None
     return role, gap, dt
 
@@ -320,7 +330,12 @@ def line_contact(first: Fragment, second: Fragment) -> ContactCandidate | None:
         return None
     contact_time = (first_time + second_time) * 0.5
     point = mul(0.5, add(first_point, second_point))
-    if not (-830.0 <= point[0] <= 830.0 and -830.0 <= point[1] <= 830.0):
+    if (
+        point[0] < -830.0
+        or point[0] > 830.0
+        or point[1] < -830.0
+        or point[1] > 830.0
+    ):
         return None
     if projected_gap(first, point, contact_time) is None:
         return None
@@ -458,7 +473,7 @@ def restitution_from_pair(
 ) -> float:
     relative_in = dot(sub(incoming[first_in], incoming[second_in]), normal)
     relative_out = dot(sub(outgoing[first_out], outgoing[second_out]), normal)
-    if abs(relative_in) <= 1e-9:
+    if not abs(relative_in) > 1e-9:
         raise ResultAmbiguous("normal relative velocity is too small")
     # The sorted incoming order may reverse the relative-velocity direction.
     # The coefficient is the magnitude of the normal relative-velocity ratio.
@@ -591,10 +606,11 @@ def make_wall_event(
     if dot(before, normal) > 0.0:
         normal = [-normal[0], -normal[1]]
     normal_velocity = dot(before, normal)
-    if normal_velocity >= -1e-9:
+    incident = normal_velocity < -1e-9
+    if not incident:
         raise ResultAmbiguous("wall incident normal velocity is not inward")
     restitution = -dot(after, normal) / normal_velocity
-    if not (0.0 <= restitution <= 1.2):
+    if restitution < 0.0 or restitution > 1.2:
         raise ResultAmbiguous("wall restitution is outside the physical range")
     energy_loss = max(0.0, 1.0 - dot(after, after) / dot(before, before))
     return InternalEvent(
@@ -662,7 +678,7 @@ def build_wall_models(events: list[InternalEvent]) -> list[dict[str, Any]]:
                     sum(dot(item.normal, [0.0, 1.0]) for item in cluster),
                 ]
             )
-            if angle_distance(mean, event.normal) <= math.radians(8.0):
+            if not angle_distance(mean, event.normal) > math.radians(8.0):
                 target = index
                 break
         if target is None:
@@ -687,13 +703,13 @@ def build_wall_models(events: list[InternalEvent]) -> list[dict[str, Any]]:
             before = next(iter(item.incoming_velocity.values()))
             after = next(iter(item.outgoing_velocity.values()))
             value = -dot(after, normal) / dot(before, normal)
-            if not (0.0 <= value <= 1.2):
+            if value < 0.0 or value > 1.2:
                 raise ResultAmbiguous("wall model produces an invalid restitution")
             restitutions.append(value)
             item.normal = normal
             item.restitution = value
             item.energy_loss = max(0.0, 1.0 - dot(after, after) / dot(before, before))
-        models.append((normal, offset, statistics.median(restitutions), cluster))
+        models.append((normal, offset, statistics.fmean(restitutions), cluster))
     models.sort(key=lambda item: math.atan2(item[0][1], item[0][0]))
     output = []
     for index, (normal, offset, restitution, cluster) in enumerate(models):

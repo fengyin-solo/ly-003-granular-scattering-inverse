@@ -1,11 +1,13 @@
 from __future__ import annotations
 
+import copy
 import hashlib
 import json
 import math
 import os
 import re
 import subprocess
+import sys
 import time
 from pathlib import Path
 from types import SimpleNamespace
@@ -54,7 +56,7 @@ def _invoke(
     environment["PYTHONDONTWRITEBYTECODE"] = "1"
     completed = subprocess.run(
         [
-            "python3",
+            sys.executable,
             APP,
             "--input",
             str(input_path),
@@ -156,7 +158,7 @@ def test_candidate_help_is_available() -> None:
     """题面：“入口是 `/app/analyze.py`，日常由批次调度器直接调用。”"""
     _case("HELP-01")
     completed = subprocess.run(
-        ["python3", APP, "--help"],
+        [sys.executable, APP, "--help"],
         capture_output=True,
         text=True,
         timeout=10,
@@ -471,8 +473,22 @@ def test_wall_restitution_closes_each_surface(
     actual = baseline.report["wall_models"]
     expected = baseline.expected["wall_models"]
     differences = [abs(got["restitution"] - want["restitution"]) for got, want in zip(actual, expected)]
+    inside_actual = copy.deepcopy(expected)
+    inside_actual[0]["restitution"] += 0.0014
+    inside_differences = [
+        abs(got["restitution"] - want["restitution"])
+        for got, want in zip(inside_actual, expected)
+    ]
+    outside_actual = copy.deepcopy(expected)
+    outside_actual[0]["restitution"] += 0.0016
+    outside_differences = [
+        abs(got["restitution"] - want["restitution"])
+        for got, want in zip(outside_actual, expected)
+    ]
     assert len(differences) == 4
-    assert max(differences) <= 0.02
+    assert max(differences) <= 0.0015
+    assert max(inside_differences) <= 0.0015
+    assert max(outside_differences) > 0.0015
 
 
 def test_momentum_summary_reports_particle_residual(
@@ -657,6 +673,26 @@ def test_input_at_exact_byte_limit_is_accepted(tmp_path: Path) -> None:
     assert input_path.stat().st_size == 262144
     assert result.returncode == 0
     assert result.output_path.exists()
+    payload = _copy_payload()
+    first_start = min(
+        sensor["time_s"][0]
+        for experiment in payload["experiments"]
+        for sensor in experiment["sensors"]
+    )
+    for experiment in payload["experiments"]:
+        for sensor in experiment["sensors"]:
+            sensor["time_s"][0] -= first_start
+            sensor["time_s"][1] -= first_start
+    shifted_root = tmp_path / "bound-time-start"
+    shifted_root.mkdir()
+    shifted_input = shifted_root / "input.json"
+    shifted_report = shifted_root / "report.json"
+    shifted_ledger = shifted_root / "ledger.jsonl"
+    _write_payload(shifted_input, payload)
+    shifted = _invoke(shifted_input, shifted_ledger, shifted_report)
+    assert shifted.returncode == 0
+    assert shifted.output_path.is_file()
+    assert shifted.ledger_path.is_file()
 
 
 def test_input_one_byte_over_limit_is_refused(tmp_path: Path) -> None:
